@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery 연습하고 가기!</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        div.question-box {
+            margin: 10px 0 20px 0;
+        }
+    </style>
+
+    <script>
+        function q1() {
+            let input = $('#input-q1').val();    //input이라는 함수를 선언하고 입력받는 곳의 id인 input-q1을 불러온다. = 쉽게말해서 인풋박스에 입력되는 값은 input이라고 정의한 것
+            console.log(input)
+            if (input == '') { // 만약에 입력되는 값이 '',즉 비어있다면
+                alert('입력하세요'); // 입력하세요 라는 얼럿 띄우기
+            } else { //그렇지 않으면!!
+                alert(input); // input  함수 즉, 입력되는 값을 얼럿해라.
+
+            }
+
+
+        }
+
+
+        function q2() {
+            let email = $('#input-q2').val(); // 이 곳에 입력되는 녀석은 email이라고 선언한다.
+            if (email.includes('@')) { // 입력된 값에 @가 있다면  ex. includes('sooknise') 입력된 값에 sooknise가 있다면
+                let domainwithzzum = email.split('@')[1].split('.')[0]; // 도메인 위드 쩜 이라는 함수를선언. 도메인 위드 쩜은 입력되는 값에서 @ 전후로 나눈다. 그중에 두번째 것에서 또 .을 전후로 나눈 것 중 첫번째 것
+                alert(domainwithzzum); // 입력된 값에 @가 있다면 온리도매인을 얼랏해라. 즉 sooknise@naver.com 이면 .을 전후로 나눈 것 중 첫번째 것이니까 naver를 얼랏
+            } else { //그렇지 않으면
+                alert('이메일이 아닙니다'); // 이메일이 아닙니다 라는 문구를 얼랏
+            }
+        }
+
+        function q3() {
+            let txt = $('#input-q3').val(); // txt라는 함수를 선언, 이곳에 입력되는 녀석의 이름은 이제 txt다.
+            if (txt == '') { //입력되는 녀석이 빈칸이면 직역하면 입력되는 녀석과 빈칸과 같은놈이면
+                alert('이름을 입력하세요'); // 이름을 입력하세요 를 얼랏한다.
+                return;// 다시돌아가서
+
+            }
+            let temp_html = `<li>${txt}</li>`; // temp_html을 선언. temp_html은 txt (txt는 입력되는 값이라고 위에 선언했음)
+            $('#names-q3').append(temp_html); // names-q3 라는 타켓 맨 마지막에 temp_html을 붙여준다. temp_html=txt=입력받은 값
+        }
+
+        function q3_remove() {
+            $('#names-q3').empty(); //names-q3 타켓 안에 내용을 비운다.  .empty=비우다.
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+<h1>jQuery + Javascript의 조합을 연습하자!</h1>
+
+<div class="question-box">
+    <h2>1. 빈칸 체크 함수 만들기</h2>
+    <h5>1-1. 버튼을 눌렀을 때 입력한 글자로 얼럿 띄우기</h5>
+    <h5>[완성본]1-2. 버튼을 눌렀을 때 칸에 아무것도 없으면 "입력하세요!" 얼럿 띄우기</h5>
+    <input id="input-q1" type="text"/>
+    <button onclick="q1()">클릭</button>
+</div>
+<hr/>
+<div class="question-box">
+    <h2>2. 이메일 판별 함수 만들기</h2>
+    <h5>2-1. 버튼을 눌렀을 때 입력받은 이메일로 얼럿 띄우기</h5>
+    <h5>2-2. 이메일이 아니면(@가 없으면) '이메일이 아닙니다'라는 얼럿 띄우기</h5>
+    <h5>[완성본]2-3. 이메일 도메인만 얼럿 띄우기</h5>
+    <input id="input-q2" type="text"/>
+    <button onclick="q2()">클릭</button>
+</div>
+<hr/>
+<div class="question-box">
+    <h2>3. HTML 붙이기/지우기 연습</h2>
+    <h5>3-1. 이름을 입력하면 아래 나오게 하기</h5>
+    <h5>[완성본]3-2. 다지우기 버튼을 만들기</h5>
+    <input id="input-q3" type="text" placeholder="여기에 이름을 입력"/>
+    <button onclick="q3()">이름 붙이기</button>
+    <button onclick="q3_remove()">다지우기</button>
+    <ul id="names-q3">
+        <li>세종대왕</li>
+        <li>임꺽정</li>
+    </ul>
+</div>
+</body>
+
+</html>
